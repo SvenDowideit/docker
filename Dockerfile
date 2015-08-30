@@ -177,6 +177,9 @@ RUN ln -sfv $PWD/.bashrc ~/.bashrc
 # Register Docker's bash completion.
 RUN ln -sv $PWD/contrib/completion/bash/docker /etc/bash_completion.d/docker
 
+# Allow building and running scripts with Windows line endings
+ENV TERM xterm
+
 # Get useful and necessary Hub images so we can "docker load" locally instead of pulling
 COPY contrib/download-frozen-image.sh /go/src/github.com/docker/docker/contrib/
 RUN ./contrib/download-frozen-image.sh /docker-frozen-images \
