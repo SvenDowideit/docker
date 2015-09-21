@@ -15,7 +15,6 @@ import (
 	"github.com/docker/docker/pkg/chrootarchive"
 	"github.com/docker/docker/pkg/system"
 	"github.com/docker/docker/volume"
-	"github.com/docker/docker/volume/drivers"
 )
 
 var (
@@ -32,6 +31,7 @@ var (
 // specifies which volume is to be used and where inside a container it should
 // be mounted.
 type mountPoint struct {
+	Id          string
 	Name        string
 	Destination string
 	Driver      string

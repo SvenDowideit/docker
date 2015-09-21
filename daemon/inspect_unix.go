@@ -52,6 +52,7 @@ func addMountPoints(container *Container) []types.MountPoint {
 	mountPoints := make([]types.MountPoint, 0, len(container.MountPoints))
 	for _, m := range container.MountPoints {
 		mountPoints = append(mountPoints, types.MountPoint{
+			Id:          m.Id,
 			Name:        m.Name,
 			Source:      m.Path(),
 			Destination: m.Destination,

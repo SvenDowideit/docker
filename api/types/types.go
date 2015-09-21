@@ -312,6 +312,7 @@ type ContainerConfig120 struct {
 
 // MountPoint represents a mount point configuration inside the container.
 type MountPoint struct {
+	Id          string
 	Name        string `json:",omitempty"`
 	Source      string
 	Destination string

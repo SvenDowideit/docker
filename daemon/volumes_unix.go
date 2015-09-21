@@ -12,6 +12,7 @@ import (
 	"github.com/Sirupsen/logrus"
 	"github.com/docker/docker/daemon/execdriver"
 	derr "github.com/docker/docker/errors"
+	"github.com/docker/docker/pkg/stringid"
 	"github.com/docker/docker/pkg/system"
 	"github.com/docker/docker/runconfig"
 	"github.com/docker/docker/volume"
@@ -61,6 +62,7 @@ func (container *Container) setupMounts() ([]execdriver.Mount, error) {
 // parseBindMount validates the configuration of mount information in runconfig is valid.
 func parseBindMount(spec, volumeDriver string) (*mountPoint, error) {
 	bind := &mountPoint{
+		Id: stringid.GenerateNonCryptoID(),
 		RW: true,
 	}
 	arr := strings.Split(spec, ":")
@@ -308,6 +310,7 @@ func (daemon *Daemon) registerMountPoints(container *Container, hostConfig *runc
 
 		for _, m := range c.MountPoints {
 			cp := &mountPoint{
+				Id:          stringid.GenerateNonCryptoID(),
 				Name:        m.Name,
 				Source:      m.Source,
 				RW:          m.RW && volume.ReadWrite(mode),

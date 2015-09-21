@@ -1168,6 +1168,7 @@ func (container *Container) networkMounts() []execdriver.Mount {
 
 func (container *Container) addBindMountPoint(name, source, destination string, rw bool) {
 	container.MountPoints[destination] = &mountPoint{
+		Id:          stringid.GenerateNonCryptoID(),
 		Name:        name,
 		Source:      source,
 		Destination: destination,
@@ -1177,6 +1178,7 @@ func (container *Container) addBindMountPoint(name, source, destination string, 
 
 func (container *Container) addLocalMountPoint(name, destination string, rw bool) {
 	container.MountPoints[destination] = &mountPoint{
+		Id:          stringid.GenerateNonCryptoID(),
 		Name:        name,
 		Driver:      volume.DefaultDriverName,
 		Destination: destination,
@@ -1186,6 +1188,7 @@ func (container *Container) addLocalMountPoint(name, destination string, rw bool
 
 func (container *Container) addMountPointWithVolume(destination string, vol volume.Volume, rw bool) {
 	container.MountPoints[destination] = &mountPoint{
+		Id:          stringid.GenerateNonCryptoID(),
 		Name:        vol.Name(),
 		Driver:      vol.DriverName(),
 		Destination: destination,
